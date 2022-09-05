@@ -1,0 +1,7 @@
+{
+  "name": "leanrning Iconic",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
