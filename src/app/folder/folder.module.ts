@@ -4,8 +4,6 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ScrollingModule } from '@angular/cdk/scrolling';
-
 import { FolderPageRoutingModule } from './folder-routing.module';
 
 import { FolderPage } from './folder.page';
@@ -15,9 +13,7 @@ import { FolderPage } from './folder.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    FolderPageRoutingModule,
-
-    ScrollingModule
+    FolderPageRoutingModule
   ],
   declarations: [FolderPage]
 })
