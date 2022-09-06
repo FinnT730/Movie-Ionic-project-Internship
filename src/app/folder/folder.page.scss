@@ -7,8 +7,8 @@ ion-menu-button {
   position: absolute;
   left: 0;
   right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  // top: 50%;
+  // transform: translateY(-50%);
 }
 
 #container strong {
@@ -27,12 +27,12 @@ ion-menu-button {
   text-decoration: none;
 }
 
-.nameOfMovie {
-  font-weight: 4;
-  background-color: #8c8c8c
-}
+// .nameOfMovie {
+//   font-weight: 4;
+//   background-color: #8c8c8c
+// }
 
-ion-scroll {
-  white-space: nowrap;
-  height: 500px;
-}
+// ion-scroll {
+//   white-space: nowrap;
+//   height: 500px;
+// }

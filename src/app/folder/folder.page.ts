@@ -30,6 +30,9 @@ export class FolderPage implements OnInit {
               _m.adult = movie.adult;
               _m.desc = movie.overview;
               _m.imgPath = movie.backdrop_path;
+              _m.id = movie.id;
+              _m.genres = movie.genre_ids;
+              _m.popularity = movie.popularity;
               this.movies.push(_m);
             }
           });

@@ -13,6 +13,14 @@
 
 }
 
+
+
+.bold {
+  font-weight: bolder;
+  color: blue;
+}
+
+
 .movieimage {
   width: 128px;
   height: 128px;

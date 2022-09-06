@@ -4,5 +4,6 @@ export class Movie {
     public desc: string;
     public imgPath: string;
     public popularity: number;
-    public genre_ids: number[];
+    public genres: number[];
+    public id: number;
 }
