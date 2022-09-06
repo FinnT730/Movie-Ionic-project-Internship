@@ -15,11 +15,28 @@
   </ion-header>
 
   <div id="container">
+    <div *ngIf="this.folder !== 'Finn'">
     <strong class="capitalize">{{ folder }}</strong>
     <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    </div>
 
     <div *ngIf="this.folder === 'Finn'">
-      
+      <div *ngFor="let movie of movies">
+        <!-- <div class="movoieNane"><div class="nameOfMovie">Name of the movie:</div> {{ movie.name }}</div> -->
+
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle></ion-card-subtitle>
+            <ion-card-title>{{movie.name}}</ion-card-title>
+          </ion-card-header>
+        
+          <ion-card-content>
+            {{movie.desc}}
+          </ion-card-content>
+        </ion-card>
+
+    </div>
+
     </div>
 
   </div>
