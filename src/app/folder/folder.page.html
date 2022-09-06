@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="false">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
@@ -7,37 +7,57 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<ion-content [fullscreen]="false">
+  <!-- <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">{{ folder }}</ion-title>
     </ion-toolbar>
-  </ion-header>
+  </ion-header> -->
 
   <div id="container">
     <div *ngIf="this.folder !== 'Finn'">
-    <strong class="capitalize">{{ folder }}</strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+      <strong class="capitalize">{{ folder }}</strong>
+      <p>
+        Explore
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://ionicframework.com/docs/components"
+          >UI Components</a
+        >
+      </p>
     </div>
 
     <div *ngIf="this.folder === 'Finn'">
+
       <div *ngFor="let movie of movies">
-        <!-- <div class="movoieNane"><div class="nameOfMovie">Name of the movie:</div> {{ movie.name }}</div> -->
-
-        <ion-card>
-          <ion-card-header>
-            <ion-card-subtitle></ion-card-subtitle>
-            <ion-card-title>{{movie.name}}</ion-card-title>
-          </ion-card-header>
-        
-          <ion-card-content>
-            {{movie.desc}}
-          </ion-card-content>
-        </ion-card>
-
+      <ion-card>
+        <ion-card-header>
+          <ion-card-subtitle>test</ion-card-subtitle>
+          <ion-card-title>{{movie.name}}</ion-card-title>
+        </ion-card-header>
+      
+        <ion-card-content>
+          {{movie.desc}}
+        </ion-card-content>
+      </ion-card>
     </div>
 
-    </div>
 
+      <!-- <div class="cardsPro"> -->
+        <!-- <ion-card>
+        <div *ngFor="let movie of movies">
+            <img src="https://image.tmdb.org/t/p/w500/{{movie.imgPath}}" />
+            <ion-item>
+            <ion-card-header>
+              <ion-card-title>{{movie.name}}</ion-card-title>
+              <ion-card-subtitle></ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content> {{movie.desc}} </ion-card-content>
+            </ion-item>
+        </div>
+      </ion-card> -->
+      </div>
+    <!-- </div> -->
   </div>
 </ion-content>
