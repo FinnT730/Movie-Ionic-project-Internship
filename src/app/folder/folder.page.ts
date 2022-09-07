@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Movie } from './movie';
+import { Movie } from '../bestmovie/movie';
 
 @Component({
   selector: 'app-folder',
   templateUrl: './folder.page.html',
-  styleUrls: ['./folder.page.scss', './movie.css'],
+  styleUrls: ['./folder.page.scss', '../bestmovie/movie.css'],
 })
 export class FolderPage implements OnInit {
   public folder: string;
