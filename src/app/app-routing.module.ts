@@ -14,7 +14,8 @@ const routes: Routes = [
 
   {
     path: 'bestmovie',
-    loadChildren: () => import('./bestmovie/bestmovie.module').then(m => m.BestmovieModule)
+    loadChildren: () => import('./bestmovie/bestmovie.module').then(m => m.BestmovieModule),
+    pathMatch: 'full'
   }
 ];
 

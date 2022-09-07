@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
 import {Movie} from './movie';
 
 @Component({
@@ -13,7 +12,7 @@ export class BestMovieComponent implements OnInit {
 
   public movies: Movie[] = [];
 
-  constructor(private activatedRoute: ActivatedRoute) {
+  constructor() {
   }
 
   ngOnInit() {
