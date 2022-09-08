@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>popularmovie</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+  <div *ngFor="let movie of movies">
+    <ion-card href="/description-of-movie/{{movie.id}}">
+      <ion-card-header>
+        <ion-card-title>
+          <div>
+            <div class="bold">Name of the movie:</div>
+            <div class="bolder_text">{{movie.name}}</div>
+          </div>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div *ngIf='movie.adult !== true'>
+          <div>
+            <div class="bolder">Overview of the movie:</div>
+            {{movie.desc}}</div>
+        </div>
+        <div>
+          <div class="bolder">Rating of the movie:</div>
+          <div class="popolarity_text">{{movie.popularity}}</div>
+        </div>
+        <br>
+        <img src="https://image.tmdb.org/t/p/w500/{{movie.imgPath}}" alt="{{movie.name}}}"/>
+      </ion-card-content>
+      <br>
+    </ion-card>
+  </div>
+
+
+</ion-content>

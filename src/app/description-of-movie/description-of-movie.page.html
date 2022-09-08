@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Description of the movie: <div class="bolder">{{this.MOVIE_NAME}}</div></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h1 *ngFor="let movie of data; let i = index">
+    <div>Name: <div class="bolder_text">{{movie.name}}</div></div>
+    <br>
+    <div>Description: <div class="bolder_text">{{movie.description}} </div></div>
+  </h1>
+
+
+
+  <ion-card>
+
+  </ion-card>
+
+
+</ion-content>

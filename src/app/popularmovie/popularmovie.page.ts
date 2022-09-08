@@ -1,14 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {Movie} from './movie';
 
 @Component({
-  selector: 'app-best-movie',
-  templateUrl: './best-movie.component.html',
-  styleUrls: ['best-movie.component.scss', '../folder/folder.page.scss', './movie.css'],
+  selector: 'app-popularmovie',
+  templateUrl: './popularmovie.page.html',
+  styleUrls: ['./popularmovie.page.scss'],
 })
-
-export class BestMovieComponent implements OnInit {
-
+export class PopularmoviePage implements OnInit {
 
   public movies: Movie[] = [];
 
@@ -36,7 +34,6 @@ export class BestMovieComponent implements OnInit {
           this.movies.push(m);
         }
       });
-
   }
 
 }

@@ -3,20 +3,15 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'folder/Inbox',
-    pathMatch: 'full'
+    path: 'popularmovie',
+    loadChildren: () => import('./popularmovie/popularmovie.module').then( m => m.PopularmoviePageModule)
   },
   {
-    path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
-  },
-
-  {
-    path: 'bestmovie',
-    loadChildren: () => import('./bestmovie/bestmovie.module').then(m => m.BestmovieModule),
-    pathMatch: 'full'
+    path: 'description-of-movie/:id',
+    loadChildren: () => import('./description-of-movie/description-of-movie.module').then( m => m.DescriptionOfMoviePageModule)
   }
+
+
 ];
 
 @NgModule({
