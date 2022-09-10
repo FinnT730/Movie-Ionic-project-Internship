@@ -8,11 +8,17 @@ import {Movie} from './movie';
 })
 export class PopularmoviePage implements OnInit {
 
+  /**
+   * Array to hold the info of the movies.
+   */
   public movies: Movie[] = [];
 
   constructor() {
   }
 
+  /**
+   * Use the build in override function to fetch the data for the most popular movies, and then put them in the array.
+   */
   ngOnInit() {
 
     fetch(

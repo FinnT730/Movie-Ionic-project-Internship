@@ -5,8 +5,8 @@
 </ion-header>
 
 <ion-content>
-
-
+<!--Look though all the data in the array, and then display all the data.
+If you clicked on the movie name, you will go to another page where the description will be giving-->
   <div *ngFor="let movie of movies">
     <ion-card href="/description-of-movie/{{movie.id}}">
       <ion-card-header>
