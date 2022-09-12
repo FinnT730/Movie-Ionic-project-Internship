@@ -15,14 +15,15 @@ export class DescriptionOfMoviePage implements OnInit {
 
   public id = 0;
   public MOVIE_NAME = "";
-  public data: any[];
+  public movieData: any[];
+  public videos: string[] = [];
 
   /**
    * Init the 'this.data' with a empty array
    * @param activatedRoute
    */
   constructor(private activatedRoute: ActivatedRoute) {
-    this.data = [];
+    this.movieData = [];
   }
 
   /**
@@ -34,12 +35,44 @@ export class DescriptionOfMoviePage implements OnInit {
       .then(result => result.json())
       .then(data => {
         console.log(data);
-        this.data.push({
+        this.movieData.push({
           name: data.title,
-          description: data.overview
+          description: data.overview,
+          imgUrl: data.backdrop_path
         });
         this.MOVIE_NAME = data.title;
       });
+
+    /*
+      Get the video ID's for the movie (most of which are linked to Youtube at the end of the day, so that should be easy enough.)
+     */
+    fetch('https://api.themoviedb.org/3/movie/' + this.id + '/videos?api_key=7d87b01406d2be659dd0cb0017acf2db&language=en-US')
+      .then(result => result.json())
+      .then(data => {
+        // console.log(data);
+        for(let dat of data.results) {
+          // console.log(dat.key);
+          // const url = "https://www.youtube.com/embed/{{dat}}?color=white&origin=https://google.com";
+          // const url = '<iframe id="ytplayer" width="720" height="405"\n' +
+          //   '                      src="https://www.youtube.com/embed/' + dat + '?color=white&origin=https://google.com"\n' +
+          //   '                      frameborder="0" allowfullscreen> </iframe>';
+          // this.videos.push(url);
+
+          // let url = 'https://www.themoviedb.org/video/play?key=' + dat.key;
+          //
+          // this.videos.push(url);
+
+          this.videos.push(dat);
+
+
+          console.log(dat);
+
+        }
+        // this.videos.push(data.results);
+      });
+
+
+    console.log(this.videos);
   }
 
 
