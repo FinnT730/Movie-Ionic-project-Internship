@@ -62,8 +62,8 @@ export class PopularTvPage implements OnInit {
           // m.genres = movie.genre_ids;
           // m.popularity = movie.popularity;
 
-          this.totalPages = serie.total_pages;
-          this.series.push(m);
+          // this.totalPages = serie.total_pages;
+          this.series.push(serie);
         }
       });
     this.firstRun = false;

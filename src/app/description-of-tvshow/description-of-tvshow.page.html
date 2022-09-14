@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>description-of-tvshow</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+<!--  {{this.id}}-->
+  <br>
+  <br>
+  <br>
+
+  <div *ngFor="let serie of series">
+<!--    <div>{{serie.name}}</div>-->
+<!--    <div>{{serie.overview}}</div>-->
+
+    <img class="bannerimg" src="https://image.tmdb.org/t/p/w500/{{serie.backdrop_path}}" alt="{{serie.backdrop_path}}}"/>
+
+    <div>
+      <div class="bolder">Name:</div>
+      <div class="bolder_text">{{serie.name}}</div>
+    </div>
+    <br>
+    <div>
+      <div class="bolder">Description:</div>
+      <div class="bolder_text">{{serie.overview}} </div>
+    </div>
+    <br>
+    <br>
+
+  </div>
+
+</ion-content>
