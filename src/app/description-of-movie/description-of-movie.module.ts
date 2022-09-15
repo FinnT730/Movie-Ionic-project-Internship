@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { DescriptionOfMoviePageRoutingModule } from './description-of-movie-routing.module';
 
 import { DescriptionOfMoviePage } from './description-of-movie.page';
+import { YoutubeEmbedPipe } from './youtube-embed.pipe';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { DescriptionOfMoviePage } from './description-of-movie.page';
     IonicModule,
     DescriptionOfMoviePageRoutingModule
   ],
-  declarations: [DescriptionOfMoviePage]
+  declarations: [DescriptionOfMoviePage, YoutubeEmbedPipe]
 })
 export class DescriptionOfMoviePageModule {}

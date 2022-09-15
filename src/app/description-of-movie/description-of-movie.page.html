@@ -41,7 +41,8 @@
 
         <div>
           <div class="videoNameText">{{video.name}}</div>
-          <a class="videoNameLink" href="https://www.youtube.com/watch?v={{video.key}}">Link to the video.</a>
+<!--          <a class="videoNameLink" href="https://www.youtube.com/watch?v={{video.key}}">Link to the video.</a>-->
+          <iframe [src]="video.key | youtubeEmbed" frameborder="0" allowfullscreen></iframe>
         </div>
         <br>
       </div>
