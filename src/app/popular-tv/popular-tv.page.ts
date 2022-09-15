@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {Serie} from './Serie';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
@@ -11,7 +10,7 @@ export class PopularTvPage implements OnInit {
   /**
    * Array to hold the info of the movies.
    */
-  public series: Serie[] = [];
+  public series: any[] = [];
   public page = 1;
   public totalPages = 0;
   private firstRun = true;
@@ -52,17 +51,7 @@ export class PopularTvPage implements OnInit {
       .then((data) => {
         console.log(data);
         for (const serie of data.results) {
-          console.log(serie);
-          const m = new Serie();
-          // m.name = movie.title;
-          // m.adult = movie.adult;
-          // m.desc = movie.overview;
-          // m.imgPath = movie.backdrop_path;
-          // m.id = movie.id;
-          // m.genres = movie.genre_ids;
-          // m.popularity = movie.popularity;
-
-          // this.totalPages = serie.total_pages;
+          // console.log(serie);
           this.series.push(serie);
         }
       });

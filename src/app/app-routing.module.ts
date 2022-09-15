@@ -23,11 +23,6 @@ const routes: Routes = [
     path: 'description-of-tvshow/:id',
     loadChildren: () => import('./description-of-tvshow/description-of-tvshow.module').then( m => m.DescriptionOfTvshowPageModule)
   }
-
-
-
-
-
 ];
 
 @NgModule({

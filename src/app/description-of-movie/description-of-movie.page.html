@@ -26,7 +26,6 @@
     </div>
     <br>
     <br>
-    <!--    <img class="bannerimg" src="https://image.tmdb.org/t/p/w500/{{movie.imgUrl}}" alt="{{movie.name}}}"/>-->
 
     <br>
 
@@ -35,13 +34,12 @@
     <br>
     <br>
 
-    <!--    Get the list of all youutbe video ID's, and display them here. TODO: 11-09-2022: It is still a template URL, because youtube does not let me embed the video. (CORS issue?)-->
+    <!--    Get the list of all youutbe video ID's, and display them here.-->
     <div *ngFor="let video of videos; let i = index">
       <div>
 
         <div>
           <div class="videoNameText">{{video.name}}</div>
-<!--          <a class="videoNameLink" href="https://www.youtube.com/watch?v={{video.key}}">Link to the video.</a>-->
           <iframe [src]="video.key | youtubeEmbed" frameborder="0" allowfullscreen></iframe>
         </div>
         <br>

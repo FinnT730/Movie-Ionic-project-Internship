@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
@@ -12,7 +12,6 @@ export class DescriptionOfMoviePage implements OnInit {
   /**
    * Global data for the movie, that can be called from the html page, to display it.
    */
-
   public id = 0;
   public MOVIE_NAME = "";
   public movieData: any[];
@@ -50,29 +49,10 @@ export class DescriptionOfMoviePage implements OnInit {
       .then(result => result.json())
       .then(data => {
         // console.log(data);
-        for(let dat of data.results) {
-          // console.log(dat.key);
-          // const url = "https://www.youtube.com/embed/{{dat}}?color=white&origin=https://google.com";
-          // const url = '<iframe id="ytplayer" width="720" height="405"\n' +
-          //   '                      src="https://www.youtube.com/embed/' + dat + '?color=white&origin=https://google.com"\n' +
-          //   '                      frameborder="0" allowfullscreen> </iframe>';
-          // this.videos.push(url);
-
-          // let url = 'https://www.themoviedb.org/video/play?key=' + dat.key;
-          //
-          // this.videos.push(url);
-
+        for (let dat of data.results) {
           this.videos.push(dat);
-
-
-          console.log(dat);
-
         }
-        // this.videos.push(data.results);
       });
-
-
-    console.log(this.videos);
   }
 
 

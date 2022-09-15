@@ -9,7 +9,10 @@
   <ion-button (click)="fetchData(false);">
     Previous page
   </ion-button>
-  <div><div class="bolder_text">Page number: </div><div>{{this.page}}</div></div>
+  <div>
+    <div class="bolder_text">Page number:</div>
+    <div>{{this.page}}</div>
+  </div>
   <ion-button (click)="fetchData(true);">
     Next page
   </ion-button>
@@ -40,7 +43,4 @@
   <ion-button (click)="fetchData(true);">
     Next page
   </ion-button>
-
-
-
 </ion-content>
