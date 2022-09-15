@@ -16,23 +16,23 @@
   <ion-button (click)="fetchData(true);">
     Next page
   </ion-button>
-  <div *ngFor="let movie of series">
-    <ion-card href="/description-of-tvshow/{{movie.id}}">
+  <div *ngFor="let tvserie of series">
+    <ion-card href="/description-of-tvshow/{{tvserie.id}}">
       <ion-card-header>
         <ion-card-title>
           <div>
             <div class="bold">Name of the movie:</div>
-            <div class="bolder_text">{{movie.name}}</div>
+            <div class="bolder_text">{{tvserie.name}}</div>
           </div>
         </ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <div>
           <div class="bolder">Rating of the movie:</div>
-          <div class="popolarity_text">{{movie.vate_average}}</div>
+          <div class="popolarity_text">{{tvserie.vate_average}}</div>
         </div>
         <br>
-        <img src="https://image.tmdb.org/t/p/w500/{{movie.backdrop_path}}" alt="{{movie.name}}}"/>
+        <img src="https://image.tmdb.org/t/p/w500/{{tvserie.backdrop_path}}" alt="{{tvserie.name}}}"/>
       </ion-card-content>
       <br>
     </ion-card>

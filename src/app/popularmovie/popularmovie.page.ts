@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {Movie} from './movie';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-popularmovie',
   templateUrl: './popularmovie.page.html',
-  styleUrls: ['./popularmovie.page.scss'],
+  styleUrls: [/*'./popularmovie.page.scss'*/],
 })
 export class PopularmoviePage implements OnInit {
 

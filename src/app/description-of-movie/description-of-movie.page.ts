@@ -4,7 +4,7 @@ import {ActivatedRoute} from '@angular/router';
 @Component({
   selector: 'app-description-of-movie',
   templateUrl: './description-of-movie.page.html',
-  styleUrls: ['./description-of-movie.page.scss'],
+  styleUrls: [/*'./description-of-movie.page.scss'*/],
 })
 export class DescriptionOfMoviePage implements OnInit {
 

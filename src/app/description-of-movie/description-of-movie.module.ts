@@ -16,6 +16,9 @@ import { YoutubeEmbedPipe } from './youtube-embed.pipe';
     IonicModule,
     DescriptionOfMoviePageRoutingModule
   ],
+  exports: [
+    YoutubeEmbedPipe
+  ],
   declarations: [DescriptionOfMoviePage, YoutubeEmbedPipe]
 })
 export class DescriptionOfMoviePageModule {}

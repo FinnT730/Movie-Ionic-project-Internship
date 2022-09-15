@@ -4,7 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 @Component({
   selector: 'app-popular-tv',
   templateUrl: './popular-tv.page.html',
-  styleUrls: ['./popular-tv.page.scss'],
+  styleUrls: [/*'./popular-tv.page.scss'*/],
 })
 export class PopularTvPage implements OnInit {
   /**
