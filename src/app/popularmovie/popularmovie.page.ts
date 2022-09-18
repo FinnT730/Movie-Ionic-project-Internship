@@ -61,7 +61,7 @@ export class PopularmoviePage implements OnInit {
           m.imgPath = movie.backdrop_path;
           m.id = movie.id;
           m.genres = movie.genre_ids;
-          m.popularity = movie.popularity;
+          m.popularity = movie.vote_average;
           this.totalPages = movie.total_pages;
           this.movies.push(m);
         }

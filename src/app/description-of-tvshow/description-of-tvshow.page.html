@@ -6,42 +6,48 @@
 
 <ion-content>
 
-  <br>
-  <br>
-  <br>
-
-  <div *ngFor="let serie of series">
-
-    <img class="bannerimg" src="https://image.tmdb.org/t/p/w500/{{serie.backdrop_path}}" alt="{{serie.backdrop_path}}}"/>
-
-    <div>
-      <div class="bolder">Name:</div>
-      <div class="bolder_text">{{serie.name}}</div>
-    </div>
-    <br>
-    <div>
-      <div class="bolder">Description:</div>
-      <div class="bolder_text">{{serie.overview}} </div>
-    </div>
-
+  <ion-infinite-scroll-content>
 
     <br>
+    <br>
+    <br>
 
-    <!--    Get the list of all youutbe video ID's, and display them here.-->
-    <div *ngFor="let video of videos_ids; let i = index">
+    <div *ngFor="let serie of series">
+
+      <img class="bannerimg" src="https://image.tmdb.org/t/p/w500/{{serie.backdrop_path}}"
+           alt="{{serie.backdrop_path}}}"/>
+
       <div>
-
-        <div>
-          <div class="videoNameText">{{video.name}}</div>
-          <iframe [src]="video.key | youtubeEmbed" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <br>
+        <div class="bolder">Name:</div>
+        <div class="bolder_text">{{serie.name}}</div>
       </div>
+      <br>
+      <div>
+        <div class="bolder">Description:</div>
+        <div class="bolder_text">{{serie.overview}} </div>
+      </div>
+
+
+      <br>
+
+      <!--    Get the list of all youutbe video ID's, and display them here.-->
+      <div *ngFor="let video of videos_ids">
+        <div>
+
+          <div>
+            <div class="videoNameText">{{video.name}}</div>
+            <iframe [src]="video.key | youtubeEmbed" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <br>
+        </div>
+      </div>
+
+      <br>
+      <br>
+
     </div>
 
-    <br>
-    <br>
+  </ion-infinite-scroll-content>
 
-  </div>
 
 </ion-content>

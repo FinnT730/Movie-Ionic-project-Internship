@@ -6,41 +6,47 @@
 
 <ion-content>
 
-  <ion-button (click)="fetchData(false);">
-    Previous page
-  </ion-button>
-  <div>
-    <div class="bolder_text">Page number:</div>
-    <div>{{this.page}}</div>
-  </div>
-  <ion-button (click)="fetchData(true);">
-    Next page
-  </ion-button>
-  <div *ngFor="let tvserie of series">
-    <ion-card href="/description-of-tvshow/{{tvserie.id}}">
-      <ion-card-header>
-        <ion-card-title>
+  <ion-infinite-scroll-content>
+
+    <ion-button (click)="fetchData(false);">
+      Previous page
+    </ion-button>
+    <div>
+      <div class="bolder_text">Page number:</div>
+      <div>{{this.page}}</div>
+    </div>
+    <ion-button (click)="fetchData(true);">
+      Next page
+    </ion-button>
+    <div *ngFor="let tvserie of series">
+      <ion-card href="/description-of-tvshow/{{tvserie.id}}">
+        <ion-card-header>
+          <ion-card-title>
+            <div>
+              <div class="bold">Name of the movie:</div>
+              <div class="bolder_text">{{tvserie.name}}</div>
+            </div>
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
           <div>
-            <div class="bold">Name of the movie:</div>
-            <div class="bolder_text">{{tvserie.name}}</div>
+            <div class="bolder">Rating of the movie:</div>
+            <div class="popolarity_text">{{tvserie.vote_average}}</div>
           </div>
-        </ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <div>
-          <div class="bolder">Rating of the movie:</div>
-          <div class="popolarity_text">{{tvserie.vate_average}}</div>
-        </div>
+          <br>
+          <img src="https://image.tmdb.org/t/p/w500/{{tvserie.backdrop_path}}" alt="{{tvserie.name}}}"/>
+        </ion-card-content>
         <br>
-        <img src="https://image.tmdb.org/t/p/w500/{{tvserie.backdrop_path}}" alt="{{tvserie.name}}}"/>
-      </ion-card-content>
-      <br>
-    </ion-card>
-  </div>
-  <ion-button (click)="fetchData(false);">
-    Previous page
-  </ion-button>
-  <ion-button (click)="fetchData(true);">
-    Next page
-  </ion-button>
+      </ion-card>
+    </div>
+    <ion-button (click)="fetchData(false);">
+      Previous page
+    </ion-button>
+    <ion-button (click)="fetchData(true);">
+      Next page
+    </ion-button>
+
+  </ion-infinite-scroll-content>
+
+
 </ion-content>
