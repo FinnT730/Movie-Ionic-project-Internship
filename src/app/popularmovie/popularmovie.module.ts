@@ -8,12 +8,18 @@ import { PopularmoviePageRoutingModule } from './popularmovie-routing.module';
 
 import { PopularmoviePage } from './popularmovie.page';
 
+import { SwiperModule } from 'swiper/angular';
+
+import { ScrollingModule } from '@angular/cdk/scrolling';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PopularmoviePageRoutingModule
+    PopularmoviePageRoutingModule,
+    SwiperModule,
+    ScrollingModule,
   ],
   declarations: [PopularmoviePage]
 })

@@ -1,13 +1,41 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {Movie} from './movie';
 import {ActivatedRoute, Router} from '@angular/router';
+import {SwiperModule} from "swiper/angular";
+import Swiper from "swiper";
 
 @Component({
   selector: 'app-popularmovie',
   templateUrl: './popularmovie.page.html',
   styleUrls: [/*'./popularmovie.page.scss'*/],
+  encapsulation: ViewEncapsulation.None
 })
 export class PopularmoviePage implements OnInit {
+
+  public swiper = new Swiper('.swiper', {
+    width: 250,
+    height: 250,
+    slidesPerGroup: 4,
+    autoHeight: true
+  });
+
+  public people: any[] = [
+    {
+      name: 'Douglas  Pace'
+    },
+    {
+      name: 'Mcleod  Mueller'
+    },
+    {
+      name: 'Day  Meyers'
+    },
+    {
+      name: 'Aguirre  Ellis'
+    },
+    {
+      name: 'Cook  Tyson'
+    }
+  ];
 
   /**
    * Array to hold the info of the movies.
@@ -47,11 +75,12 @@ export class PopularmoviePage implements OnInit {
     this.movies = [];
 
     fetch(
-      "https://api.themoviedb.org/3/movie/popular?api_key=7d87b01406d2be659dd0cb0017acf2db&page=" + (this.page).toString()
+      'https://api.themoviedb.org/3/movie/popular?api_key=7d87b01406d2be659dd0cb0017acf2db&page=' + (this.page).toString()
     )
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        data.results = data.results.sort(data.results.vote_average);
         for (const movie of data.results) {
           // console.log(movie.title);
           const m = new Movie();
