@@ -41,30 +41,20 @@ export class PopularmoviePage implements OnInit {
    */
   async ngOnInit() {
 
-
+    /**
+     * Get the genres and put them into the array for sorting the movies into the right genre.
+     */
     await fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=7d87b01406d2be659dd0cb0017acf2db&language=en-US')
       .then(response => response.json())
       .then(genres => {
         console.log(genres);
-
         for (const genre of genres.genres) {
           const _g = new Genre();
           _g.genre_names = genre['name'];
-          if (Array.isArray(genre['id'])) {
-            for (const c of genre['id']) {
-              _g.genre_ids.push(c);
-            }
-          } else {
-            // _g.genre_ids.push(genre['id']);
-          }
+          _g.genre_ids = genre['id'];
           this._genre.push(_g);
         }
-
       });
-
-
-    console.log(this._genre);
-
 
     this.fetchData(false);
   }
@@ -92,7 +82,7 @@ export class PopularmoviePage implements OnInit {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        data.results = data.results.sort(data.results.vote_average);
+        // data.results = data.results.sort(data.results.vote_average);
         for (const movie of data.results) {
           // console.log(movie.title);
           const m = new Movie();
@@ -105,6 +95,19 @@ export class PopularmoviePage implements OnInit {
           m.popularity = movie.vote_average;
           this.totalPages = movie.total_pages;
           this.movies.push(m);
+
+          /**
+            loop though the genres and through the movies, and check if the movie genre has a match with said the genre array. If that is the case, store the movie ID in that as well.
+           **/
+          for(let _g of this._genre) {
+            for(let mg of m.genres) {
+              if(mg === _g.genre_ids) {
+                _g.movieid = m.id;
+              }
+            }
+          }
+
+
         }
       });
     this.firstRun = false;
