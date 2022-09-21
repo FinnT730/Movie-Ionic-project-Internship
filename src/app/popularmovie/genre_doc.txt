@@ -1,0 +1,23 @@
+combined = []
+
+for movie in movies do
+
+  run = true;
+
+  for is_in_list in combined do
+    if movie.genre == is_in_list do
+      run = false
+    end
+  end
+
+  if run is true do
+    for movie_genre in movie.genre do
+      for genre in genres do
+        if movie_genre.genre == genre do
+          combined += [movie.id, genere.id]
+        end
+      end
+    end
+  end
+
+end

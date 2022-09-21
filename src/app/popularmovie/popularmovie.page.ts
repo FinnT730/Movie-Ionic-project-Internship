@@ -1,8 +1,10 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {Movie} from './movie';
 import {ActivatedRoute, Router} from '@angular/router';
 import {SwiperModule} from "swiper/angular";
 import Swiper from "swiper";
+
+import {Genre} from './Genre';
 
 @Component({
   selector: 'app-popularmovie',
@@ -19,23 +21,8 @@ export class PopularmoviePage implements OnInit {
     autoHeight: true
   });
 
-  public people: any[] = [
-    {
-      name: 'Douglas  Pace'
-    },
-    {
-      name: 'Mcleod  Mueller'
-    },
-    {
-      name: 'Day  Meyers'
-    },
-    {
-      name: 'Aguirre  Ellis'
-    },
-    {
-      name: 'Cook  Tyson'
-    }
-  ];
+
+  private _genre: Genre[] = [];
 
   /**
    * Array to hold the info of the movies.
@@ -52,13 +39,38 @@ export class PopularmoviePage implements OnInit {
   /**
    * Use the build in override function to fetch the data for the most popular movies, and then put them in the array.
    */
-  ngOnInit() {
+  async ngOnInit() {
+
+
+    await fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=7d87b01406d2be659dd0cb0017acf2db&language=en-US')
+      .then(response => response.json())
+      .then(genres => {
+        console.log(genres);
+
+        for (const genre of genres.genres) {
+          const _g = new Genre();
+          _g.genre_names = genre['name'];
+          if (Array.isArray(genre['id'])) {
+            for (const c of genre['id']) {
+              _g.genre_ids.push(c);
+            }
+          } else {
+            // _g.genre_ids.push(genre['id']);
+          }
+          this._genre.push(_g);
+        }
+
+      });
+
+
+    console.log(this._genre);
+
 
     this.fetchData(false);
   }
 
   fetchData(b: boolean) {
-    if(this.firstRun === false) {
+    if (this.firstRun === false) {
       if (b) {
         if (!(this.page + 1 < this.totalPages)) {
           this.page += 1;
