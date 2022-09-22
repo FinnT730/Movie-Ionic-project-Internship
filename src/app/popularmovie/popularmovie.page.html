@@ -6,121 +6,6 @@
 
 <ion-content>
 
-
-  <!--  <ion-infinite-scroll-content>-->
-
-  <!--  <ion-button (click)="fetchData(false);">-->
-  <!--    Previous page-->
-  <!--  </ion-button>-->
-  <!--    <div><div class="bolder_text">Page number: </div><div>{{this.page}}</div></div>-->
-  <!--  <ion-button (click)="fetchData(true);">-->
-  <!--    Next page-->
-  <!--  </ion-button>-->
-  <!--&lt;!&ndash;Look though all the data in the array, and then display all the data.-->
-  <!--If you clicked on the movie name, you will go to another page where the description will be giving&ndash;&gt;-->
-  <!--  <div *ngFor="let movie of movies">-->
-  <!--    <ion-card href="/description-of-movie/{{movie.id}}">-->
-  <!--      <ion-card-header>-->
-  <!--        <ion-card-title>-->
-  <!--          <div>-->
-  <!--            <div class="bold">Name of the movie:</div>-->
-  <!--            <div class="bolder_text">{{movie.name}}</div>-->
-  <!--          </div>-->
-  <!--        </ion-card-title>-->
-  <!--      </ion-card-header>-->
-  <!--      <ion-card-content>-->
-  <!--        <div>-->
-  <!--          <div class="bolder">Rating of the movie:</div>-->
-  <!--          <div class="popolarity_text">{{movie.popularity}}</div>-->
-  <!--        </div>-->
-  <!--        <br>-->
-  <!--        <img src="https://image.tmdb.org/t/p/w500/{{movie.imgPath}}" alt="{{movie.name}}}"/>-->
-  <!--      </ion-card-content>-->
-  <!--      <br>-->
-  <!--    </ion-card>-->
-  <!--  </div>-->
-  <!--    <ion-button (click)="fetchData(false);">-->
-  <!--      Previous page-->
-  <!--    </ion-button>-->
-  <!--    <ion-button (click)="fetchData(true);">-->
-  <!--      Next page-->
-  <!--    </ion-button>-->
-
-
-<!--  <ion-content>-->
-
-<!--    <ion-button (click)="fetchData(false);">-->
-<!--      Previous page-->
-<!--    </ion-button>-->
-<!--    <div>-->
-<!--      <div class="bolder_text">Page number:</div>-->
-<!--      <div>{{this.page}}</div>-->
-<!--    </div>-->
-<!--    <ion-button (click)="fetchData(true);">-->
-<!--      Next page-->
-<!--    </ion-button>-->
-
-<!--    <swiper [height]="250" [width]="250">-->
-
-<!--      &lt;!&ndash;      <ng-template swiperSlide>&ndash;&gt;-->
-<!--      &lt;!&ndash;        <ion-button (click)="fetchData(false);">&ndash;&gt;-->
-<!--      &lt;!&ndash;          Previous page&ndash;&gt;-->
-<!--      &lt;!&ndash;        </ion-button>&ndash;&gt;-->
-<!--      &lt;!&ndash;        <div>&ndash;&gt;-->
-<!--      &lt;!&ndash;          <div class="bolder_text">Page number:</div>&ndash;&gt;-->
-<!--      &lt;!&ndash;          <div>{{this.page}}</div>&ndash;&gt;-->
-<!--      &lt;!&ndash;        </div>&ndash;&gt;-->
-<!--      &lt;!&ndash;        <ion-button (click)="fetchData(true);">&ndash;&gt;-->
-<!--      &lt;!&ndash;          Next page&ndash;&gt;-->
-<!--      &lt;!&ndash;        </ion-button>&ndash;&gt;-->
-<!--      &lt;!&ndash;      </ng-template>&ndash;&gt;-->
-
-<!--      &lt;!&ndash;      <cdk-virtual-scroll-viewport itemSize="20" minBufferPx="900" maxBufferPx="1350">&ndash;&gt;-->
-<!--      &lt;!&ndash;        <div *ngFor="let movie of movies"> {{ movie.name }} </div>&ndash;&gt;-->
-<!--      &lt;!&ndash;      </cdk-virtual-scroll-viewport>&ndash;&gt;-->
-
-<!--      <ng-template swiperSlide *ngFor="let movie of movies">-->
-<!--        <ion-card href="/description-of-movie/{{movie.id}}">-->
-<!--          <ion-card-header>-->
-<!--            <ion-card-title>-->
-<!--              <div>-->
-<!--                <div class="bold">Name of the movie:</div>-->
-<!--                <div class="bolder_text">{{movie.name}}</div>-->
-<!--              </div>-->
-<!--            </ion-card-title>-->
-<!--          </ion-card-header>-->
-<!--          <ion-card-content>-->
-<!--            <div>-->
-<!--              <div class="bolder">Rating of the movie:</div>-->
-<!--              <div class="popolarity_text">{{movie.popularity}}</div>-->
-<!--            </div>-->
-<!--            <br>-->
-<!--            <img src="https://image.tmdb.org/t/p/w500/{{movie.imgPath}}" alt="{{movie.name}}}"/>-->
-<!--          </ion-card-content>-->
-<!--          <br>-->
-<!--        </ion-card>-->
-<!--      </ng-template>-->
-
-
-<!--      &lt;!&ndash;      </div>&ndash;&gt;-->
-
-<!--      &lt;!&ndash;        <ng-template swiperSlide>&ndash;&gt;-->
-<!--      &lt;!&ndash;          <div ></div>&ndash;&gt;-->
-<!--      &lt;!&ndash;        </ng-template>&ndash;&gt;-->
-<!--      &lt;!&ndash;        <ng-template swiperSlide>Slide 2</ng-template>&ndash;&gt;-->
-<!--      &lt;!&ndash;        <ng-template swiperSlide>Slide 3</ng-template>&ndash;&gt;-->
-<!--    </swiper>-->
-<!--  </ion-content>-->
-
-  <!--  </ion-infinite-scroll-content>-->
-
-
-
-
-
-
-
-
   <ion-content>
 
     <ion-button (click)="fetchData(false);">
@@ -134,35 +19,73 @@
       Next page
     </ion-button>
 
+
     <div *ngFor="let gen of _genre">
       <div>{{gen.genre_names}}</div>
-    <swiper [height]="250" [width]="250">
-      <ng-template swiperSlide *ngFor="let movie of movies">
-        <ion-card href="/description-of-movie/{{movie.id}}" *ngIf="gen.movieid !== movie.id">
-          <ion-card-header>
-            <ion-card-title>
+      <swiper height="250" width="250">
+        <ng-template swiperSlide *ngFor="let movID of gen.movieid; let slideIndex = index">
+          <!--          <div>{{movies[slideIndex].name}}</div>-->
+          <ion-card href="/description-of-movie/{{movies[slideIndex].id}}">
+            <ion-card-header>
+              <ion-card-title>
+                <div>
+                  <div class="bold">Name of the movie:</div>
+                  <div class="bolder_text">{{movies[slideIndex].name}}</div>
+                </div>
+              </ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
               <div>
-                <div class="bold">Name of the movie:</div>
-                <div class="bolder_text">{{movie.name}}</div>
+                <div class="bolder">Rating of the movie:</div>
+                <div class="popolarity_text">{{movies[slideIndex].popularity}}</div>
               </div>
-            </ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <div>
-              <div class="bolder">Rating of the movie:</div>
-              <div class="popolarity_text">{{movie.popularity}}</div>
-            </div>
-            <br>
-            <img src="https://image.tmdb.org/t/p/w500/{{movie.imgPath}}" alt="{{movie.name}}}"/>
-          </ion-card-content>
-          <br>
-        </ion-card>
-      </ng-template>
-    </swiper>
+              <br>
+              <img src="https://image.tmdb.org/t/p/w500/{{movies[slideIndex].imgPath}}" alt="{{movies[slideIndex].name}}}"/>
+            </ion-card-content>
+          </ion-card>
 
+        </ng-template>
+
+      </swiper>
     </div>
-  </ion-content>
 
+
+    <!--    <div *ngFor="let gen of _genre">-->
+    <!--      <div>{{gen.genre_names}}</div>-->
+    <!--      <swiper [height]="250" [width]="250">-->
+    <!--        <ng-template swiperSlide *ngFor="let movie of movies; let index = index" [virtualIndex]="index">-->
+    <!--&lt;!&ndash;          <div *ngIf="gen.movieid[index] == movie.id">&ndash;&gt;-->
+    <!--            <div>{{index}}</div>-->
+    <!--            <div *ngFor="let _g of gen.movieid">-->
+    <!--                          <div *ngIf="_g === movie.id">-->
+    <!--              <ion-card href="/description-of-movie/{{movie.id}}">-->
+    <!--                <ion-card-header>-->
+    <!--                  <ion-card-title>-->
+    <!--                    <div>-->
+    <!--                      <div class="bold">Name of the movie:</div>-->
+    <!--                      <div class="bolder_text">{{movie.name}}</div>-->
+    <!--                    </div>-->
+    <!--                  </ion-card-title>-->
+    <!--                </ion-card-header>-->
+    <!--                <ion-card-content>-->
+    <!--                  <div>-->
+    <!--                    <div class="bolder">Rating of the movie:</div>-->
+    <!--                    <div class="popolarity_text">{{movie.popularity}}</div>-->
+    <!--                  </div>-->
+    <!--                  <br>-->
+    <!--                  <img src="https://image.tmdb.org/t/p/w500/{{movie.imgPath}}" alt="{{movie.name}}}"/>-->
+    <!--                </ion-card-content>-->
+    <!--                <br>-->
+    <!--              </ion-card>-->
+    <!--            </div>-->
+    <!--          </div>-->
+    <!--          &lt;!&ndash;          </div>&ndash;&gt;-->
+    <!--        </ng-template>-->
+    <!--      </swiper>-->
+    <!--    </div>-->
+
+    <!--    </div>-->
+  </ion-content>
 
 
 </ion-content>

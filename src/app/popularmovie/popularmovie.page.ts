@@ -21,9 +21,6 @@ export class PopularmoviePage implements OnInit {
     autoHeight: true
   });
 
-
-  private _genre: Genre[] = [];
-
   /**
    * Array to hold the info of the movies.
    */
@@ -31,6 +28,7 @@ export class PopularmoviePage implements OnInit {
   public page = 1;
   public totalPages = 0;
   private firstRun = true;
+  private _genre: Genre[] = [];
 
   constructor(private route: ActivatedRoute, private router: Router) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -41,6 +39,14 @@ export class PopularmoviePage implements OnInit {
    */
   async ngOnInit() {
 
+    this.fetchData(false);
+    // this.fetchGenres();
+    console.log(this._genre);
+
+  }
+
+  async fetchGenres() {
+    this._genre = [];
     /**
      * Get the genres and put them into the array for sorting the movies into the right genre.
      */
@@ -52,11 +58,21 @@ export class PopularmoviePage implements OnInit {
           const _g = new Genre();
           _g.genre_names = genre['name'];
           _g.genre_ids = genre['id'];
+
+          for(let _m of this.movies) {
+            for(let _mg of _m.genres) {
+              if(genre['id'] == _mg) {
+                const num: number = _m.id;
+                _g.movieid.push(num);
+              }
+            }
+          }
+
           this._genre.push(_g);
         }
       });
 
-    this.fetchData(false);
+    console.log(this._genre);
   }
 
   fetchData(b: boolean) {
@@ -95,22 +111,36 @@ export class PopularmoviePage implements OnInit {
           m.popularity = movie.vote_average;
           this.totalPages = movie.total_pages;
           this.movies.push(m);
-
-          /**
-            loop though the genres and through the movies, and check if the movie genre has a match with said the genre array. If that is the case, store the movie ID in that as well.
-           **/
-          for(let _g of this._genre) {
-            for(let mg of m.genres) {
-              if(mg === _g.genre_ids) {
-                _g.movieid = m.id;
-              }
-            }
-          }
-
-
         }
       });
+
+
+    // for(let i = 1; i <= 20; i++) {
+    //   fetch(
+    //     'https://api.themoviedb.org/3/movie/popular?api_key=7d87b01406d2be659dd0cb0017acf2db&page=' + (i).toString()
+    //   )
+    //     .then((response) => response.json())
+    //     .then((data) => {
+    //       console.log(data);
+    //       // data.results = data.results.sort(data.results.vote_average);
+    //       for (const movie of data.results) {
+    //         // console.log(movie.title);
+    //         const m = new Movie();
+    //         m.name = movie.title;
+    //         m.adult = movie.adult;
+    //         m.desc = movie.overview;
+    //         m.imgPath = movie.backdrop_path;
+    //         m.id = movie.id;
+    //         m.genres = movie.genre_ids;
+    //         m.popularity = movie.vote_average;
+    //         this.totalPages = movie.total_pages;
+    //         this.movies.push(m);
+    //       }
+    //     });
+    // }
+
     this.firstRun = false;
+    this.fetchGenres().then(r => null);
   }
 
 }
