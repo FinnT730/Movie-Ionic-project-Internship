@@ -1,15 +1,20 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {Movie} from './movie';
 import {ActivatedRoute, Router} from '@angular/router';
-import {SwiperModule} from "swiper/angular";
-import Swiper from "swiper";
+import Swiper from 'swiper';
+
+import {MDCList} from '@material/list';
+import {MDCRipple} from '@material/ripple';
+
+const list = new MDCList(document.querySelector('.mdc-list'));
+const listItemRipples = list.listElements.map((listItemEl) => new MDCRipple(listItemEl));
 
 import {Genre} from './Genre';
 
 @Component({
   selector: 'app-popularmovie',
   templateUrl: './popularmovie.page.html',
-  styleUrls: [/*'./popularmovie.page.scss'*/],
+  styleUrls: [/*'./popularmovie.page.scss'*/ '../../../node_modules/@material/theme/styles.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class PopularmoviePage implements OnInit {
@@ -27,8 +32,8 @@ export class PopularmoviePage implements OnInit {
   public movies: Movie[] = [];
   public page = 1;
   public totalPages = 0;
-  private firstRun = true;
-  private _genre: Genre[] = [];
+  public firstRun = true;
+  public _genre: Genre[] = [];
 
   constructor(private route: ActivatedRoute, private router: Router) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -58,16 +63,32 @@ export class PopularmoviePage implements OnInit {
           const _g = new Genre();
           _g.genre_names = genre['name'];
           _g.genre_ids = genre['id'];
-
-          for(let _m of this.movies) {
-            for(let _mg of _m.genres) {
+          for(const _m of this.movies) {
+            for(const _mg of _m.genres) {
               if(genre['id'] == _mg) {
-                const num: number = _m.id;
-                _g.movieid.push(num);
+
+
+                if(!this._genre.find((item) => item.movieid.find((find_2) => find_2 == _mg))) {
+                  const num: number = _m.id;
+                  _g.movieid.push(num);
+                }
+
+                // for(let tmp_gen of this._genre) {
+                //   for(let movieID of tmp_gen.movieid) {
+                //     if(movieID === _mg) {
+                //
+                //     } else {
+                //       const num: number = _m.id;
+                //       _g.movieid.push(num);
+                //     }
+                //   }
+                // }
+
+                // const num: number = _m.id;
+                // _g.movieid.push(num);
               }
             }
           }
-
           this._genre.push(_g);
         }
       });
