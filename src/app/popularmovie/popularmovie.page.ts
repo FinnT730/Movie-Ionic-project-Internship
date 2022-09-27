@@ -3,19 +3,14 @@ import {Movie} from './movie';
 import {ActivatedRoute, Router} from '@angular/router';
 import Swiper from 'swiper';
 
-import {MDCList} from '@material/list';
-import {MDCRipple} from '@material/ripple';
-
-const list = new MDCList(document.querySelector('.mdc-list'));
-const listItemRipples = list.listElements.map((listItemEl) => new MDCRipple(listItemEl));
-
 import {Genre} from './Genre';
+import {ngDebug} from "@angular/cli/src/utilities/environment-options";
 
 @Component({
   selector: 'app-popularmovie',
   templateUrl: './popularmovie.page.html',
-  styleUrls: [/*'./popularmovie.page.scss'*/ '../../../node_modules/@material/theme/styles.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: [/*'./popularmovie.page.scss'*/],
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class PopularmoviePage implements OnInit {
 
@@ -50,47 +45,180 @@ export class PopularmoviePage implements OnInit {
 
   }
 
-  async fetchGenres() {
+  fetchGenres() {
     this._genre = [];
     /**
      * Get the genres and put them into the array for sorting the movies into the right genre.
      */
-    await fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=7d87b01406d2be659dd0cb0017acf2db&language=en-US')
+    fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=7d87b01406d2be659dd0cb0017acf2db&language=en-US')
       .then(response => response.json())
       .then(genres => {
+
         console.log(genres);
-        for (const genre of genres.genres) {
-          const _g = new Genre();
-          _g.genre_names = genre['name'];
-          _g.genre_ids = genre['id'];
-          for(const _m of this.movies) {
-            for(const _mg of _m.genres) {
-              if(genre['id'] == _mg) {
 
+        for (let gen of genres.genres) {
+          const g: Genre = new Genre();
 
-                if(!this._genre.find((item) => item.movieid.find((find_2) => find_2 == _mg))) {
-                  const num: number = _m.id;
-                  _g.movieid.push(num);
-                }
+          g.genre_names = gen.name;
+          g.genre_ids = gen.id;
 
-                // for(let tmp_gen of this._genre) {
-                //   for(let movieID of tmp_gen.movieid) {
-                //     if(movieID === _mg) {
-                //
-                //     } else {
-                //       const num: number = _m.id;
-                //       _g.movieid.push(num);
-                //     }
-                //   }
-                // }
-
-                // const num: number = _m.id;
-                // _g.movieid.push(num);
-              }
-            }
-          }
-          this._genre.push(_g);
+          this._genre.push(g);
         }
+
+
+        for (let movie of this.movies) {
+          for (let gen of genres.genres) {
+            movie.genres.forEach((mg) => {
+              if (mg === gen.id) {
+                console.log("movie: %s, with genre %i, is linked with genre: %s", movie.name, mg, gen.name);
+                this._genre.find((num) => {
+                  return num.genre_ids === mg;
+                }).movieid.push(movie.id);
+                this.movies.find((m) => m === movie).genres.find((i) => i === mg);
+
+              }
+            });
+          }
+        }
+
+
+        // genres.genres.foreach((genre) => {
+        //   if (genre.id == movie.id) {
+        //     genre.push(movieid);
+        //   }
+        // })
+
+
+        // for (let movie of this.movies) {
+        //   for (let mg of movie.genres) {
+        //     let _index = 0;
+        //     for (let g of genres.genres) {
+        //
+        //       this._genre.find((gg) => {
+        //         movie.
+        //       })
+        //
+        //       if(true) {
+        //         let gen = new Genre();
+        //         gen.genre_names = g.name;
+        //         gen.genre_ids = g.id;
+        //         if (mg === g.id) {
+        //           gen.movieid.push(movie.id);
+        //           movie.genres[_index] = null;
+        //           this._genre.push(gen);
+        //         }
+        //       }
+        //     }
+        //     _index += 1;
+        //   }
+        // }
+
+
+        // for(let movie of this.movies) {
+        //   for (let g of genres.genres) {
+        //     let _g: Genre = g;
+        //     movie.genres.forEach((gid) => {
+        //       if(gid === _g.genre_ids) {
+        //         this._genre.forEach((q) => {
+        //           if(!q.movieid.find((id) => movie.id)) {
+        //             const genre: Genre = new Genre();
+        //             genre.genre_ids = _g.genre_ids;
+        //             genre.genre_names = _g.genre_names;
+        //             genre.movieid.push(movie.id);
+        //             this._genre.push(genre);
+        //           }
+        //         });
+        //       }
+        //     });
+        //   }
+        // }
+
+
+        // for(let movie of this.movies) {
+        //   let run = true;
+        //
+        //   for(let genre of this._genre) {
+        //     for(let gen of movie.genres) {
+        //       if(genre.movieid.find((n) => n == gen)) {
+        //         run = false;
+        //       } else {
+        //         run = true;
+        //       }
+        //     }
+        //   }
+        //
+        //
+        //   if(run === false) {
+        //     for(let mg of movie.genres) {
+        //       for(let gen of this._genre) {
+        //         if(gen.movieid.find((q) => q == mg)) {
+        //             console.log(gen.movieid);
+        //         }
+        //       }
+        //     }
+        //   }
+        // }
+
+        // genres.genres.forEach((g) => {
+        //   debugger;
+        //   console.log(g);
+        //   let gen = new Genre();
+        //   gen.genre_names = g.name;
+        //   gen.genre_ids = g.id;
+        //   for (let mid of movie.genres) {
+        //     if (mid === g.id) {
+        //       gen.movieid.push(mid);
+        //     }
+        //   }
+        //   this._genre.push(gen);
+        // });
+
+        // this.movies.forEach((movie) => {
+        //   genres.genres.foreach((genre) => {
+        //     if (genre.id == movie.id) {
+        //       // this._genre.push() push(movie.id);
+        //     }
+        //   })
+        // });
+
+        // genres.genres.forEach((gen) => {
+        //   let _g = new Genre();
+        //   _g.genre_names = gen.name;
+        //   _g.genre_ids = gen.id;
+        //   this.movies.forEach((mov) => {
+        //     mov.genres.forEach((_gid) => {
+        //       if(gen.id === _gid) {
+        //         // console.log("movie name = %s, movie_genre id = %i, and the genre_id = %i, the genre name = %s",
+        //         //   mov.name, _gid, gen.id, gen.name);
+        //         _g.movieid.push(_gid);
+        //         mov.genres[_gid] = null;
+        //       }
+        //     });
+        //   });
+        //
+        //   this._genre.push(_g);
+        // });
+
+
+        // console.log(genres);
+        //   for (const genre of genres.genres) {
+        //     const _g = new Genre();
+        //     _g.genre_names = genre['name'];
+        //     _g.genre_ids = genre['id'];
+        //
+        //     this.movies.forEach((movie) => {
+        //       for(let i = 0; i < movie.genres.length; i++) {
+        //         let gi = movie.genres[i];
+        //         if(gi === _g.genre_ids) {
+        //           _g.movieid.push(gi);
+        //           movie.genres[i] = null;
+        //         }
+        //       }
+        //     });
+        //
+        //
+        //     this._genre.push(_g);
+        //   }
       });
 
     console.log(this._genre);
@@ -160,8 +288,11 @@ export class PopularmoviePage implements OnInit {
     //     });
     // }
 
+
+    console.log(this.movies);
+
     this.firstRun = false;
-    this.fetchGenres().then(r => null);
+    this.fetchGenres();
   }
 
 }

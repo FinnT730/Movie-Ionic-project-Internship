@@ -7,96 +7,46 @@
 <ion-content>
 
   <ion-content>
-
-<!--    <ion-button (click)="fetchData(false);">-->
-<!--      Previous page-->
-<!--    </ion-button>-->
-<!--    <div>-->
-<!--      <div class="bolder_text">Page number:</div>-->
-<!--      <div>{{this.page}}</div>-->
-<!--    </div>-->
-<!--    <ion-button (click)="fetchData(true);">-->
-<!--      Next page-->
-<!--    </ion-button>-->
-
-
-<!--    <div *ngFor="let gen of _genre">-->
-<!--      <div>{{gen.genre_names}}</div>-->
-<!--      <swiper height="250" width="250">-->
-<!--        <ng-template swiperSlide *ngFor="let movID of gen.movieid; let slideIndex = index">-->
-<!--          <ion-card href="/description-of-movie/{{movies[slideIndex].id}}">-->
-<!--            <ion-card-header>-->
-<!--              <ion-card-title>-->
-<!--                <div>-->
-<!--                  <div class="bold">Name of the movie:</div>-->
-<!--                  <div class="bolder_text">{{movies[slideIndex].name}}</div>-->
-<!--                </div>-->
-<!--              </ion-card-title>-->
-<!--            </ion-card-header>-->
-<!--            <ion-card-content>-->
-<!--              <div>-->
-<!--                <div class="bolder">Rating of the movie:</div>-->
-<!--                <div class="popolarity_text">{{movies[slideIndex].popularity}}</div>-->
-<!--              </div>-->
-<!--              <br>-->
-<!--              <img src="https://image.tmdb.org/t/p/w500/{{movies[slideIndex].imgPath}}" alt="{{movies[slideIndex].name}}}"/>-->
-<!--            </ion-card-content>-->
-<!--          </ion-card>-->
-<!--        </ng-template>-->
-<!--      </swiper>-->
-<!--    </div>-->
-
-    <ul class="mdc-list">
-      <li class="mdc-list-item" tabindex="0">
-        <span class="mdc-list-item__ripple"></span>
-        <span class="mdc-list-item__text">Single-line item</span>
-      </li>
-      <li class="mdc-list-item">
-        <span class="mdc-list-item__ripple"></span>
-        <span class="mdc-list-item__text">Single-line item</span>
-      </li>
-      <li class="mdc-list-item">
-        <span class="mdc-list-item__ripple"></span>
-        <span class="mdc-list-item__text">Single-line item</span>
-      </li>
-    </ul>
+    <ion-button (click)="fetchData(false);">
+      Previous page
+    </ion-button>
+    <div>
+      <div class="bolder_text">Page number:</div>
+      <div>{{this.page}}</div>
+    </div>
+    <ion-button (click)="fetchData(true);">
+      Next page
+    </ion-button>
 
 
-    <!--    <div *ngFor="let gen of _genre">-->
-    <!--      <div>{{gen.genre_names}}</div>-->
-    <!--      <swiper [height]="250" [width]="250">-->
-    <!--        <ng-template swiperSlide *ngFor="let movie of movies; let index = index" [virtualIndex]="index">-->
-    <!--&lt;!&ndash;          <div *ngIf="gen.movieid[index] == movie.id">&ndash;&gt;-->
-    <!--            <div>{{index}}</div>-->
-    <!--            <div *ngFor="let _g of gen.movieid">-->
-    <!--                          <div *ngIf="_g === movie.id">-->
-    <!--              <ion-card href="/description-of-movie/{{movie.id}}">-->
-    <!--                <ion-card-header>-->
-    <!--                  <ion-card-title>-->
-    <!--                    <div>-->
-    <!--                      <div class="bold">Name of the movie:</div>-->
-    <!--                      <div class="bolder_text">{{movie.name}}</div>-->
-    <!--                    </div>-->
-    <!--                  </ion-card-title>-->
-    <!--                </ion-card-header>-->
-    <!--                <ion-card-content>-->
-    <!--                  <div>-->
-    <!--                    <div class="bolder">Rating of the movie:</div>-->
-    <!--                    <div class="popolarity_text">{{movie.popularity}}</div>-->
-    <!--                  </div>-->
-    <!--                  <br>-->
-    <!--                  <img src="https://image.tmdb.org/t/p/w500/{{movie.imgPath}}" alt="{{movie.name}}}"/>-->
-    <!--                </ion-card-content>-->
-    <!--                <br>-->
-    <!--              </ion-card>-->
-    <!--            </div>-->
-    <!--          </div>-->
-    <!--          &lt;!&ndash;          </div>&ndash;&gt;-->
-    <!--        </ng-template>-->
-    <!--      </swiper>-->
-    <!--    </div>-->
+    <div *ngFor="let gen of _genre">
+      <div>{{gen.genre_names}}</div>
+      <swiper height="250" width="250">
+        <ng-template swiperSlide *ngFor="let movID of gen.movieid; let slideIndex = index">
+          <!--          <div>{{movies[slideIndex].name}}</div>-->
+          <ion-card href="/description-of-movie/{{movies[slideIndex].id}}">
+            <ion-card-header>
+              <ion-card-title>
+                <div>
+                  <div class="bold">Name of the movie:</div>
+                  <div class="bolder_text">{{movies[slideIndex].name}}</div>
+                </div>
+              </ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <div>
+                <div class="bolder">Rating of the movie:</div>
+                <div class="popolarity_text">{{movies[slideIndex].popularity}}</div>
+              </div>
+              <br>
+              <img src="https://image.tmdb.org/t/p/w500/{{movies[slideIndex].imgPath}}"
+                   alt="{{movies[slideIndex].name}}}"/>
+            </ion-card-content>
+          </ion-card>
 
-    <!--    </div>-->
+        </ng-template>
+      </swiper>
+      </div>
   </ion-content>
 
 
