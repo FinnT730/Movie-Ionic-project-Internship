@@ -15,7 +15,7 @@ import {ngDebug} from "@angular/cli/src/utilities/environment-options";
 export class PopularmoviePage implements OnInit {
 
   public swiper = new Swiper('.swiper', {
-    width: 250,
+    width: 500,
     height: 250,
     slidesPerGroup: 4,
     autoHeight: true
@@ -45,7 +45,7 @@ export class PopularmoviePage implements OnInit {
 
   }
 
-  fetchGenres() {
+  async fetchGenres() {
     this._genre = [];
     /**
      * Get the genres and put them into the array for sorting the movies into the right genre.
@@ -56,30 +56,70 @@ export class PopularmoviePage implements OnInit {
 
         console.log(genres);
 
-        for (let gen of genres.genres) {
-          const g: Genre = new Genre();
+        // for (let gen of genres.genres) {
+        //   const g: Genre = new Genre();
+        //
+        //   g.genre_names = gen.name;
+        //   g.genre_ids = gen.id;
+        //
+        //   this._genre.push(g);
+        // }
 
-          g.genre_names = gen.name;
-          g.genre_ids = gen.id;
 
-          this._genre.push(g);
-        }
+        // for (let movie of this.movies) {
+        //   for (let gen of genres.genres) {
+        //     movie.genres.forEach((mg) => {
+        //       if (mg === gen.id) {
+        //         this._genre.find((num) => {
+        //           console.log("movie: %s, with genre %i, is linked with genre: %s", movie.name, mg, gen.name);
+        //           return num.genre_ids === mg;
+        //         }).movieid.push(movie.id);
+        //         this.movies.find((m) => m === movie).genres.find((i) => i === mg);
+        //       }
+        //     });
+        //   }
+        // }
 
 
-        for (let movie of this.movies) {
-          for (let gen of genres.genres) {
-            movie.genres.forEach((mg) => {
-              if (mg === gen.id) {
-                console.log("movie: %s, with genre %i, is linked with genre: %s", movie.name, mg, gen.name);
-                this._genre.find((num) => {
-                  return num.genre_ids === mg;
-                }).movieid.push(movie.id);
-                this.movies.find((m) => m === movie).genres.find((i) => i === mg);
 
+
+        // for(let movie of this.movies) {
+        //   movie.genres.map((num, index, array) => {
+        //     this._genre.find((gn, gi, ga) => {
+        //       return gn.genre_ids === num;
+        //     }).movieid.push(num);
+        //   });
+
+
+          // this._genre.find((_gen) => {
+          //   return movie.genres.filter((val, index, array) => {
+          //     this._genre.find((p) => p.genre_ids === val).movieid.push(movie.id);
+          //     console.log(array);
+          //   });
+          // });
+        // }
+
+        // console.log(this._genre);
+
+
+        for(let genre of genres.genres){
+          const genreWithAllMovies: Genre = new Genre();
+          genreWithAllMovies.genre_names = genre.name;
+          genreWithAllMovies.genre_ids = genre.id;
+
+          for(let movie of this.movies){
+            for(let ofGenreId of movie.genres){
+              if(ofGenreId === genreWithAllMovies.genre_ids){
+                genreWithAllMovies.movieid.push(movie.id);
               }
-            });
+            }
           }
+          this._genre.push(genreWithAllMovies);
         }
+
+
+        console.log(this._genre);
+
 
 
         // genres.genres.foreach((genre) => {
@@ -292,7 +332,7 @@ export class PopularmoviePage implements OnInit {
     console.log(this.movies);
 
     this.firstRun = false;
-    this.fetchGenres();
+    this.fetchGenres().then(r => null);
   }
 
 }
